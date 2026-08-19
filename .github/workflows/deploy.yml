@@ -1,0 +1,36 @@
+name: Deploy to Cloudflare Pages
+
+on:
+  push:
+    branches: [main] # Se ejecuta al hacer push a la rama main
+  workflow_dispatch: # Permite ejecutarlo manualmente desde la UI de GitHub
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci # Usa 'ci' para instalaciones rápidas y confiables en CI
+
+      - name: Build Vite App
+        run: npm run build # El comando de build de Vite
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3 # Acción segura recomendada [citation:6]
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name=frontend-practice
