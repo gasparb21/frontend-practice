@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import './firstPage.css'
 
 export default function FirstPage() {
 
@@ -32,10 +33,9 @@ export default function FirstPage() {
     },[])
 
   return (
-
     <div>
-        <h1>Welcome to the First Page of Pokemon</h1>
-        <ul>
+        <h1 className='pokedex-title'>Welcome to the First Page of Pokemon</h1>
+        <ul className='pokemon-list'>
             {pokemonList.map((pokemon, index) => {
                 return(
                     <>
