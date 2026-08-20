@@ -1,12 +1,9 @@
 name: Deploy to Cloudflare Pages
 
 on:
-  pull_request:
-    types:
-      - closed  # Se ejecuta cuando el PR se cierra (incluye merges)
-    branches:
-      - main   # Solo para PRs dirigidos a main
-  workflow_dispatch: # Permite ejecutarlo manualmente desde la UI de GitHub
+  push:
+    branches: [main]
+  workflow_dispatch:
 
 jobs:
   deploy:
