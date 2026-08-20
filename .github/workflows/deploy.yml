@@ -34,6 +34,4 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
           npx wrangler pages deploy dist \
-            --project-name=frontend-practice \
-            --branch=${{ github.ref_name }}
-        
+            --project-name=frontend-practice
