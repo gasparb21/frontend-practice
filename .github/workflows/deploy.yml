@@ -29,9 +29,11 @@ jobs:
         run: npm run build # El comando de build de Vite
 
       - name: Deploy to Cloudflare Pages
-        uses: cloudflare/wrangler-action@v3 # Acción segura recomendada [citation:6]
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        with:
-          command: pages deploy dist --project-name=frontend-practice
+        run: |
+          npx wrangler pages deploy dist \
+            --project-name=frontend-practice \
+            --branch=${{ github.ref_name }}
+        
