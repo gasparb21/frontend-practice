@@ -38,4 +38,3 @@ jobs:
         run: |
           npx wrangler pages deploy dist \
             --project-name=frontend-practice
-            --branch=main
