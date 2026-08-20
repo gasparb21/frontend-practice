@@ -34,7 +34,7 @@ export default function FirstPage() {
 
   return (
     <div>
-        <h1 className='pokedex-title'>Te amo mami</h1>
+        <h1 className='pokedex-title'>Te amo mamiii</h1>
         <ul className='pokemon-list'>
             {pokemonList.map((pokemon, index) => {
                 return(
